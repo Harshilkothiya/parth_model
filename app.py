@@ -8,11 +8,6 @@ import os
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-# Check if all required files exist
-model_files = ["model.pkl", "ohe.pkl", "scaler.pkl", "label.pkl"]
-for file in model_files:
-    if not os.path.exists(file):
-        raise FileNotFoundError(f"Missing required file: {file}")
 
 # Load saved models and encoders
 clf = joblib.load(open('./model.pkl', 'rb'))
