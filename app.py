@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-import pickle
+import joblib
 import numpy as np
 import pandas as pd
 from flask_cors import CORS
@@ -15,10 +15,10 @@ for file in model_files:
         raise FileNotFoundError(f"Missing required file: {file}")
 
 # Load saved models and encoders
-clf = pickle.load(open('./model.pkl', 'rb'))
-ohe = pickle.load(open('./ohe.pkl', 'rb'))
-scaler = pickle.load(open('./scaler.pkl', 'rb'))
-label = pickle.load(open('./label.pkl', 'rb'))
+clf = joblib.load(open('./model.pkl', 'rb'))
+ohe = joblib.load(open('./ohe.pkl', 'rb'))
+scaler = joblib.load(open('./scaler.pkl', 'rb'))
+label = joblib.load(open('./label.pkl', 'rb'))
 
 # Fix OneHotEncoder handle_unknown issue
 ohe.handle_unknown = 'ignore'
